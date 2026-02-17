@@ -5,6 +5,7 @@
 rootProject.name = "MonoSketch"
 
 val moduleMap = mapOf(
+    "headless" to "headless",
     "app" to "app",
     "action-manager" to "libs/action-manager",
     "browser-manager" to "libs/browser-manager",
