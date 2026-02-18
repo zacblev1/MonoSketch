@@ -4,7 +4,9 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(npm run tailwind:build:*)",
-      "Bash(git push)"
+      "Bash(git push)",
+      "Bash(brew list:*)",
+      "Bash(/usr/libexec/java_home:*)"
     ]
   }
 }

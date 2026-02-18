@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "monosketch": {
+      "command": "node",
+      "args": ["mcp-server/dist/index.js"],
+      "env": {
+        "MONOSKETCH_API_URL": "http://localhost:3100"
+      }
+    }
+  }
+}
