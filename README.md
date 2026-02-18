@@ -83,6 +83,60 @@ Capacitor      │         │           │3                  C│    │    �
   - macOS: `Cmd + Shift + C`
   - Windows/Linux: `Ctrl + Shift + C`
 
+## MCP Diagram Service (Headless API)
+
+MonoSketch can run as a headless Node.js service with an MCP (Model Context Protocol) server, allowing AI assistants like Claude to programmatically create ASCII diagrams.
+
+### Architecture
+
+```
+Claude Code  ──stdio──▶  MCP Server  ──HTTP──▶  API Server  ──▶  Kotlin/JS Bundle
+                         (mcp-server)            (api-server)      (headless)
+```
+
+### Quick Start
+
+**Prerequisites:** Java 17+, Node.js
+
+**1. Build the Kotlin/JS bundle (one-time):**
+```bash
+./gradlew :headless:assemble
+```
+
+**2. Install dependencies and build (one-time):**
+```bash
+cd api-server && npm install && npm run build
+cd ../mcp-server && npm install && npm run build
+```
+
+**3. Start the API server:**
+```bash
+cd api-server && npm start
+```
+
+The API server runs on `http://localhost:3100`.
+
+### Claude Code Integration
+
+The project includes a `.mcp.json` that automatically configures the MCP server for Claude Code. With the API server running, start a Claude Code session in this directory and ask it to create diagrams.
+
+### API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/sessions` | Create a new diagram session |
+| GET | `/sessions` | List active sessions |
+| DELETE | `/sessions/:id` | Delete a session |
+| POST | `/sessions/:id/shapes/rectangle` | Add a rectangle |
+| POST | `/sessions/:id/shapes/text` | Add a text box |
+| POST | `/sessions/:id/shapes/line` | Add a line/connector |
+| GET | `/sessions/:id/shapes` | List all shapes |
+| PUT | `/sessions/:id/shapes/:shapeId` | Move, resize, update, or ungroup a shape |
+| DELETE | `/sessions/:id/shapes/:shapeId` | Delete a shape |
+| GET | `/sessions/:id/render` | Render diagram as ASCII text |
+| POST | `/sessions/:id/export` | Export as MonoFile JSON |
+| POST | `/sessions/:id/import` | Import MonoFile JSON |
+
 ## Roadmap
 
 ### Grouping
