@@ -8,5 +8,9 @@
       "Bash(brew list:*)",
       "Bash(/usr/libexec/java_home:*)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "monosketch"
+  ],
+  "enableAllProjectMcpServers": true
 }
